@@ -21,9 +21,9 @@ end process;
 process (clk_in, reset) begin
     if(stp_sig='0') then count_sig <= count_sig; count <= count_sig;
         if(clk_in' event and clk_in='0' and reset='0')then
-            if (count_sig="1011") then up12_sig <= '1'; up06_sig <= '1'; count_sig <= count_sig + '1'; count <= count_sig+'1';
-            elsif (count_sig="0110") then up06_sig <= '1'; up12_sig <= '0'; count_sig <= count_sig + '1'; count<= count_sig+'1';
-            elsif (count_sig="1100") then count <= "0001"; count_sig <= "0001"; up12_sig <= '0'; up06_sig <= '0';
+            if (count="1011") then up12_sig <= '1'; up06_sig <= '1'; count_sig <= count_sig + '1'; count <= count_sig +'1';
+            elsif (count="0110") then up06_sig <= '1'; up12_sig <= '0'; count_sig <= count_sig + '1'; count<= count_sig+'1';
+            elsif (count="1100") then count <= "0001"; count_sig <= "0001"; up12_sig <= '1'; up06_sig <= '1';
             //countが6でも12でもないときはただcountを足すだけで出力は0となる
             else count_sig <= count_sig + '1'; count <= count_sig + '1'; up12_sig <= '0'; up06_sig <= '0';
             end if;
