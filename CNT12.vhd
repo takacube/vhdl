@@ -10,9 +10,9 @@ end CNT12;
 architecture RTL of CNT12 is
     signal stp_sig: std_logic := '0';
     signal count_sig: std_logic_vector(3 downto 0) := "0001";
-begin
 
-//stopが押されるとstp_sigをトグルする
+begin
+--stopが押されるとstp_sigをトグルする
 process (stop) begin
     if (stop' event and stop='0') then stp_sig <= NOT(sto_sig);
     end if;
@@ -24,15 +24,15 @@ process (clk_in, reset) begin
             if (count="1011") then up12_sig <= '1'; up06_sig <= '1'; count_sig <= count_sig + '1'; count <= count_sig +'1';
             elsif (count="0110") then up06_sig <= '1'; up12_sig <= '0'; count_sig <= count_sig + '1'; count<= count_sig+'1';
             elsif (count="1100") then count <= "0001"; count_sig <= "0001"; up12_sig <= '1'; up06_sig <= '1';
-            //countが6でも12でもないときはただcountを足すだけで出力は0となる
+            --countが6でも12でもないときはただcountを足すだけで出力は0となる
             else count_sig <= count_sig + '1'; count <= count_sig + '1'; up12_sig <= '0'; up06_sig <= '0';
             end if;
         elsif (clk_in' event and clk_in='0' and reset='1') then up12_sig <= '0'; up06_sig <= '0';
         end if;
     end if;
-    //リセットが押されるとcountを1に戻す
+    --リセットが押されるとcountを1に戻す
     if (clk_in' event and clk_in='0' and reset='1') then count_sig <= "0001"; count <= "0001";
     end if;
 end process;
 
-end ETL;
+end RTL;
