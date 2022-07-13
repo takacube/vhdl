@@ -32,6 +32,8 @@ process (clk_in, reset) begin
         elsif (clk_in' event and clk_in='0' and reset='1') then up12_sig <= '0'; up06_sig <= '0'; count <= "0001";
         end if;
     end if;
+    if (clk_in' event and clk_in='0' and reset='1') then count_sig <= '1'; count <= "0001";
+    end if;
 end process;
 
 end RTL;
