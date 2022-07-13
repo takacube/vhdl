@@ -14,7 +14,7 @@ architecture RTL of CNT12 is
 begin
 --stopが押されるとstp_sigをトグルする
 process (stop) begin
-    if (stop' event and stop='0') then stp_sig <= '1'; count_sig <= '0';
+    if (stop' event and stop='0') then stp_sig <= NOT(stp_sig); count_sig <= '0';
     end if;
 end process;
 
