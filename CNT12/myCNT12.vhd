@@ -20,7 +20,7 @@ end process;
 
 process (clk_in, reset) begin
     --ストップボタンが押されていない時
-    if(clk_in' event and clk_in='0' stp_sig='0') then count_sig <= '1'; count <= count + count_sig;
+    if(clk_in' event and clk_in='0' and stp_sig='0') then count_sig <= '1'; count <= count + count_sig;
         --立ち下がりエッジかつ，リセットボタンが押されていない
         if(clk_in' event and clk_in='0' and reset='0')then
             if (count="1100") then up12_sig <= '1'; up06_sig <= '1';
