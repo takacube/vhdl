@@ -12,8 +12,9 @@ architecture SIM of tb_CNT12 is
     end component;
 
     signal clk_in: std_logic :='1';
-    signal reset: std_logic :='1';
-    signal stop,up06_sig, up12_sig: std_logic :='0';
+    signal reset: std_logic :='0';
+    signal stop: std_logic :='1'
+    signal up06_sig, up12_sig: std_logic :='0';
     signal count:  std_logic_vector(3 downto 0);
 begin
     DUT: CNT12 port map(clk_in,reset,stop,up06_sig, up12_sig, count);
