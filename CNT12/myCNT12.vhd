@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 entity CNT12 is
     port ( clk_in, stop, reset: in std_logic;
-    count: out std_logic_vector(3 downto 0):="0000");
-    up06_sig, up12_sig: out std_logic :='0';
+    count: out std_logic_vector(3 downto 0):="0000";
+    up06_sig, up12_sig: out std_logic :='0');
 end CNT12;
 
 architecture RTL of CNT12 is
@@ -20,7 +20,7 @@ end process;
 
 process (clk_in, reset) begin
     --ストップボタンが押されていない時
-    if(stp_sig='0') then count_sig <= '1'; count <= count + count_sig;
+    if(clk_in' event and clk_in='0' stp_sig='0') then count_sig <= '1'; count <= count + count_sig;
         --立ち下がりエッジかつ，リセットボタンが押されていない
         if(clk_in' event and clk_in='0' and reset='0')then
             if (count="1100") then up12_sig <= '1'; up06_sig <= '1';
